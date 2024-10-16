@@ -1,0 +1,29 @@
+.welcome-main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 100vh;
+}
+.welcome-second-container {
+    background-color: #e8e8e8;
+    padding: 60px;
+    text-align: center;
+    border-radius: 40px;
+}
+.welcome {
+    color: black;
+    font-size: 16px;
+    font-weight: 700;
+}
+.main-title {
+    color: rgb(25,139,93);
+    font-family: "Rockwell";
+    margin-top: 0px;
+    font-size: 30px;
+}
+.image {
+    height: 200px;
+    width: 200px;
+}
