@@ -3,6 +3,7 @@ import cors from 'cors'
 import { mongoDBConnection } from './dbConnection.js';
 import { User } from './Schema.js';
 import jwt from "jsonwebtoken";
+import VerifyToken from './verifyToken.js';
 const app=express()
 
 app.use(express.json());
@@ -26,6 +27,7 @@ app.post("/signupDetails",async (req,res)=>{
         res.status(200).json({message:"User Successfully inserted into the db"});
     }catch(error){
         console.log(error)
+        return res.status(500).json({message:"internal server error"});
     }
 })
 
@@ -51,6 +53,39 @@ app.post("/signinDetails",async (req,res)=>{
     }
     catch(error){
         console.log(error);
+        return res.status(500).json({message:"internal server error"});
+    }
+})
+
+
+app.post("/insertVegetableData",async(req,res)=>{
+    const dataArray=req.body;
+    try{
+        const {vegetableData_collection}=await mongoDBConnection()
+        const insertResults=await Promise.all(
+            dataArray.map(async (data)=>{
+                return await vegetableData_collection.insertOne(data)
+            })
+        )
+        console.log(insertResults);
+        return res.status(200).json({message:"inserted vegetable data successfully",data:insertResults});
+    }
+    catch(error){
+        console.log(error);
+        return res.status(500).json({message:"internal server error"});
+    }
+})
+
+app.get("/getVegetables",VerifyToken,async(req,res)=>{
+    try{
+        const {vegetableData_collection}=await mongoDBConnection();
+        const vegetables=await vegetableData_collection.find({}).toArray();
+        console.log(vegetables)
+        return res.status(200).json({vegetables});
+    }
+    catch(error){
+        console.log(error);
+        return res.status(500).json({message:"internal server error"}); 
     }
 })
 

@@ -1,8 +1,10 @@
 import "./SignUpPage.css"
 
-import {Outlet,Link} from 'react-router-dom'
+import {useNavigate,Outlet,Link} from 'react-router-dom'
 import { useState } from "react"
 function SignUpPage(){
+    const navigate=useNavigate()
+
     const [signupdata,setsignupdata]=useState({
         name:'',
         phoneNumber:'',
@@ -43,10 +45,17 @@ function SignUpPage(){
                 body:JSON.stringify(signupdata),
             })
             const data=await response.json()
-            console.log(data)
+            console.log("harika",data.message);
+            if (data.message === "User Already Exists!") {
+                setError(data.message); // Set the error message
+            } else if (data.message === "User Successfully inserted into the db") {
+                navigate("/signin"); // Navigate to the signin page on success
+            }
+            
         }
         catch(error){
             console.log(error);
+            setError("Failed to communicate with server");
         }
     }
 

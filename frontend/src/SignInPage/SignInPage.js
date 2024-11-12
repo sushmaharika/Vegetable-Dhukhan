@@ -1,7 +1,8 @@
 import "./SignInPage.css"
-import {Outlet,Link} from 'react-router-dom'
+import {useNavigate,Outlet,Link} from 'react-router-dom'
 import { useState } from "react"
 function SignInPage(){
+    const navigate=useNavigate()
     const [signindata,setsignindata]=useState({
         email:'',
         password:''
@@ -38,7 +39,15 @@ function SignInPage(){
                 body:JSON.stringify(signindata),
             })
             const data=await response.json()
-            console.log(data)
+            console.log("2323",data.token);
+            if(data.token){
+                localStorage.setItem("token",data.token)
+            }
+            if(data.message==="User in the database"){
+                navigate("/welcome");
+            }else{
+                setError(data.message);
+            }
         }
         catch(error){
             console.log(error);

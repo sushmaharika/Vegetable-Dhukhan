@@ -8,8 +8,9 @@ export async function mongoDBConnection(){
 
         const db=mongoose.connection.useDb("Vegetable_Dhukhan");
         const user_details=db.collection("user_details");
+        const vegetableData_collection=db.collection("vegetableData_collection");
         console.log("mongo connected")
-        return {user_details};
+        return {user_details, vegetableData_collection};
 
     }
     catch(error){

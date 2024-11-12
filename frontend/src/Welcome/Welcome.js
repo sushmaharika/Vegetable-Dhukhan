@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Welcome.css'
+import { useNavigate } from 'react-router-dom'
 export default function Welcome() {
+  const navigate=useNavigate()
+  useEffect(()=>{
+    const timer=setTimeout(()=>{
+      navigate("/vegetables")
+    },5000);
+    return ()=>{
+      clearTimeout(timer)
+    }
+  },[navigate])
   return (
     <div className='welcome-main-container'>
         <div className='welcome-second-container'>
@@ -11,7 +21,7 @@ export default function Welcome() {
             <p>Linked In : <span style={{fontWeight:"700"}}>Sushma Harika Pallam</span></p>
             <p>Gmail : <span style={{fontWeight:"700"}}>sushmaharikapallam@gmail.com</span></p>
         </div>
-
+        <button className='button' onClick={()=>navigate("/vegetables")}>Vegetables</button>
     </div>
   )
 }
