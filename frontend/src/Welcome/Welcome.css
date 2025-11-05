@@ -3,14 +3,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: white;
-    height: 100vh;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    padding: 20px;
 }
 .welcome-second-container {
-    background-color: #e8e8e8;
-    padding: 60px;
+    background: var(--surface);
+    padding: 40px 50px;
     text-align: center;
-    border-radius: 40px;
+    border-radius: 20px;
+    border: 2px solid var(--border);
+    box-shadow: 0 20px 60px rgba(0,0,0,.2);
 }
 .welcome {
     color: black;
@@ -28,14 +31,17 @@
     width: 200px;
 }
 .button{
-    padding: 10px;
-    border-radius: 10px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: 120px;
+    min-height: 44px;
+    background-color: #2e7d32;
+    color: #fff;
+    border: none;
     margin: 10px;
-    border: solid black 1px;
-    color: black;
+    cursor: pointer;
+    transition: all .3s ease;
 }
-.button:hover{
-    background-color: black;
-    border: 0px;
-    color: white;
-}
+.button:hover{ background-color: #256628; }

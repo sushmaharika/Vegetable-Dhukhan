@@ -1,56 +1,372 @@
 .checkout-container {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
-    max-width: 80%;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .empty {
     text-align: center;
-    color: black;
+    color: #333;
+    font-size: 1.5rem;
+    background: white;
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+.empty h1 {
+    margin: 0 0 15px 0;
+    font-size: 32px;
+    color: #333;
+}
+
+.empty p {
+    margin: 0 0 30px 0;
+    color: #666;
+    font-size: 18px;
+}
+
+.checkout-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
 }
 
 .checkout-title {
-    margin-bottom: 40px;
-    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-size: 36px;
     color: #333;
+    text-align: center;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.checkout-list {
-    list-style-type: none;
-    padding: 0;
+.address-section {
+    margin-bottom: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+}
+
+.address-section label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #333;
+    font-size: 16px;
+}
+
+.address-input {
     width: 100%;
+    padding: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    resize: vertical;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.address-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+.checkout-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 30px 0;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.checkout-table thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.checkout-table th {
+    padding: 18px 15px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.checkout-table td {
+    padding: 20px 15px;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .checkout-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.checkout-item:hover {
+    background-color: #f8f9fa;
 }
 
 .checkout-image {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 10px;
     object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.checkout-name {
-    font-size: 1.2rem;
+/* Quantity controls */
+.quantity-controls {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 999px;
+    padding: 6px 10px;
+}
+
+.qty-btn {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.qty-btn:hover { transform: translateY(-1px); }
+.qty-btn:active { transform: translateY(0); }
+
+.qty-value {
+    min-width: 28px;
+    text-align: center;
+    font-weight: 700;
     color: #333;
-    margin: 0;
-    font-weight: bold;
-    margin-left: 20px;
-    flex-grow: 1;
 }
 
-.checkout-price {
-    font-weight: bold;
-    color: #ff5722;
+.actions-cell { min-width: 120px; }
+
+.delete-button {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: 120px;
+    min-height: 44px;
+    background-color: #2e7d32;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #256628;
+}
+
+.total-bill {
+    text-align: right;
+    margin-top: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+}
+
+.total-bill h3 {
+    color: #333;
+    font-size: 20px;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.total-bill h3:first-child {
+    color: #666;
+    font-size: 18px;
+}
+
+.paypal-container {
+    margin-top: 30px;
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 12px;
+}
+
+.paypal-container h3 {
+    margin: 0 0 20px 0;
+    font-size: 22px;
+    color: #333;
+    font-weight: 600;
+}
+
+#paypal-button-container {
+    display: inline-block;
+}
+
+.payment-success-container {
+    text-align: center;
+    padding: 60px 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    margin: 50px auto;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.success-icon {
+    font-size: 100px;
+    margin-bottom: 25px;
+    animation: scaleIn 0.5s ease-out;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+.success-title {
+    font-size: 42px;
+    color: #4caf50;
+    margin: 0 0 15px 0;
+    font-weight: 700;
+}
+
+.success-message {
+    font-size: 20px;
+    color: #666;
+    margin: 0 0 25px 0;
+}
+
+.transaction-id {
+    font-size: 16px;
+    color: #333;
+    margin: 0 0 35px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.transaction-id strong {
+    color: #667eea;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.success-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: 120px;
+    min-height: 44px;
+    background-color: #2e7d32;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #256628;
+}
+
+.btn-secondary {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: 120px;
+    min-height: 44px;
+    background-color: #2e7d32;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #256628;
+}
+
+@media (max-width: 768px) {
+    .checkout-content {
+        padding: 20px;
+    }
+    
+    .checkout-table {
+        font-size: 14px;
+    }
+    
+    .checkout-table th,
+    .checkout-table td {
+        padding: 12px 8px;
+    }
+    
+    .checkout-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .quantity-controls { gap: 6px; padding: 4px 8px; }
+    .qty-btn { width: 32px; height: 32px; font-size: 16px; }
+}
+
+@media (max-width: 520px) {
+    .checkout-table th:nth-child(1),
+    .checkout-table td:nth-child(1) { display: none; } /* hide image on very small screens */
+    .checkout-title { font-size: 28px; }
+    .checkout-table th, .checkout-table td { padding: 10px 6px; font-size: 13px; }
+    .delete-button { padding: 8px 12px; font-size: 13px; }
 }

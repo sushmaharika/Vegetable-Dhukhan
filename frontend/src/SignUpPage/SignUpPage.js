@@ -1,7 +1,7 @@
 import "./SignUpPage.css"
-
 import {useNavigate,Outlet,Link} from 'react-router-dom'
 import { useState } from "react"
+
 function SignUpPage(){
     const navigate=useNavigate()
 
@@ -9,18 +9,18 @@ function SignUpPage(){
         name:'',
         phoneNumber:'',
         email:'',
-        password:''
+        password:'',
+        role:'user'
     });
 
     const [error,setError]=useState('')
 
-
     const handleChange=(e)=>{
         const {name,value}=e.target;
-
         setsignupdata({...signupdata,[name]:value})
         setError("");
     }
+    
     const handleSubmit=async(e)=>{
         e.preventDefault();
         if(!signupdata.name || !signupdata.phoneNumber || !signupdata.email || !signupdata.password){
@@ -45,13 +45,13 @@ function SignUpPage(){
                 body:JSON.stringify(signupdata),
             })
             const data=await response.json()
-            console.log("harika",data.message);
             if (data.message === "User Already Exists!") {
-                setError(data.message); // Set the error message
-            } else if (data.message === "User Successfully inserted into the db") {
-                navigate("/signin"); // Navigate to the signin page on success
+                setError(data.message);
+            } else if (data.message === "User successfully registered!" || response.ok) {
+                navigate("/signin");
+            } else {
+                setError(data.message || "Registration failed");
             }
-            
         }
         catch(error){
             console.log(error);
@@ -59,41 +59,104 @@ function SignUpPage(){
         }
     }
 
-
-
     return (
         <div className="signup-main-container">
-            <form onSubmit={handleSubmit} className="signup-form-container">
-                <div>
-                    <h1 style={{color:"black", fontFamily:"Rockwell"}}>Sign Up :)</h1>
+            <div className="signup-wrapper">
+                <div className="signup-header">
+                    <h1 className="signup-title">Create Account</h1>
+                    <p className="signup-subtitle">Join Vegetable Dhukan today</p>
                 </div>
-                <div className="signup-input-container">
-                    <label className="signup-label-element-name">Name</label>
-                    <input className="signup-input-element" onChange={handleChange} type="text" placeholder="Name" name="name"/>
-                </div>
-                <div className="signup-input-container">
-                    <label className="signup-label-element-phone">Phone Number</label>
-                    <input className="signup-input-element"  onChange={handleChange} type="text" placeholder="Phone Number" name="phoneNumber"/>
-                </div>
-                <div className="signup-input-container">
-                    <label className="signup-label-element-email">Email</label>
-                    <input className="signup-input-element" onChange={handleChange} type="text" placeholder="Email" name="email"/>
-                </div>
-                <div className="signup-input-container">
-                    <label className="signup-label-element-password">Password</label>
-                    <input className="signup-input-element" onChange={handleChange} type="password" placeholder="Password" name="password"/>
-                </div>
-                {error && <p style={{color:'red'}}>{error}</p>}
-                <div className="signup-button-container">
-                    <Link to="/signin">
-                    <button className="signup-button-css">Sign In</button>
-                    </Link>
-                    <button className="signup-button-css" type="submit">Sign Up</button>
-                </div>
-            </form>
+                
+                <form onSubmit={handleSubmit} className="signup-form-container">
+                    <div className="signup-input-container">
+                        <label className="signup-label-element">Full Name</label>
+                        <input 
+                            className="signup-input-element" 
+                            onChange={handleChange} 
+                            type="text" 
+                            placeholder="Enter your full name" 
+                            name="name"
+                            value={signupdata.name}
+                        />
+                    </div>
+                    
+                    <div className="signup-input-container">
+                        <label className="signup-label-element">Phone Number</label>
+                        <input 
+                            className="signup-input-element" 
+                            onChange={handleChange} 
+                            type="tel" 
+                            placeholder="Enter your phone number" 
+                            name="phoneNumber"
+                            value={signupdata.phoneNumber}
+                        />
+                    </div>
+                    
+                    <div className="signup-input-container">
+                        <label className="signup-label-element">Email Address</label>
+                        <input 
+                            className="signup-input-element" 
+                            onChange={handleChange} 
+                            type="email" 
+                            placeholder="Enter your email" 
+                            name="email"
+                            value={signupdata.email}
+                        />
+                    </div>
+                    
+                    <div className="signup-input-container">
+                        <label className="signup-label-element">Password</label>
+                        <input 
+                            className="signup-input-element" 
+                            onChange={handleChange} 
+                            type="password" 
+                            placeholder="Enter your password (min 5 characters)" 
+                            name="password"
+                            value={signupdata.password}
+                        />
+                    </div>
+                    
+                    <div className="signup-input-container">
+                        <label className="signup-label-element">Account Type</label>
+                        <div className="role-selection">
+                            <label className="role-option">
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    value="user"
+                                    checked={signupdata.role === 'user'}
+                                    onChange={handleChange}
+                                />
+                                <span className="role-label">Customer</span>
+                            </label>
+                            <label className="role-option">
+                                <input
+                                    type="radio"
+                                    name="role"
+                                    value="admin"
+                                    checked={signupdata.role === 'admin'}
+                                    onChange={handleChange}
+                                />
+                                <span className="role-label">Admin</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    {error && <div className="error-message">{error}</div>}
+                    
+                    <div className="signup-button-container">
+                        <button className="signup-button-css primary" type="submit">
+                            Create Account
+                        </button>
+                    </div>
+                    
+                    <div className="signup-footer">
+                        <p>Already have an account? <Link to="/signin" className="link-text">Sign In</Link></p>
+                    </div>
+                </form>
+            </div>
             <Outlet/>
         </div>
-
     )
 }
 

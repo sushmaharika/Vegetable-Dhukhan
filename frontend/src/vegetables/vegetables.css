@@ -1,79 +1,162 @@
-.Vegetable-header{
+.Vegetable-header {
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 30px;
-    font-family: "Rockwell";
-}
-.checkout{
-    border: solid black 1px;
-    border-radius: 10px;
-    margin-top: 30px;
-    height: 30px;
-    width:140px;
-}
-.checkout:hover{
-    background-color: black;
-    color:white;
-    border: solid black 1px;
-    border-radius: 10px;
-}
-/* vegetables.css */
-
-.vegetable-name {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: black; /* black color for vegetable names */
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    border-bottom: 3px solid #667eea;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.vegetable-price {
-    font-size: 1rem;
-    color: black; /* black color for price */
-    margin: 5px 0;
+.Vegetable-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+}
+
+.checkout,
+.logout {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: 120px;
+    min-height: 44px;
+    background-color: #2e7d32;
+    color: #fff;
+    border: none;
+    margin: 0 8px;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.checkout:hover,
+.logout:hover {
+    background-color: #256628;
+}
+
+/* Theme cart badge */
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #f5576c;
+    color: #fff;
+    border-radius: 999px;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.vegetables-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
 }
 
 ul {
-    list-style-type: none; /* Remove default list style */
+    list-style-type: none;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap; /* Make list items wrap around */
-    justify-content: space-around; /* Space evenly between items */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 li {
-    background-color: #fff;
-    padding: 15px;
-    margin: 15px;
-    width: 220px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.2s; /* Smooth hover effect */
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid transparent;
 }
 
 li:hover {
-    transform: translateY(-10px); /* Move up slightly on hover */
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    border-color: #667eea;
 }
 
 img {
     width: 100%;
-    height: 150px;
-    object-fit: cover; /* Ensure image covers its container */
-    border-radius: 10px;
-    margin-bottom: 10px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.vegetable-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 15px 0 10px 0;
+    color: #333;
+}
+
+.vegetable-price {
+    font-size: 24px;
+    color: #2e7d32;
+    margin: 10px 0 20px 0;
+    font-weight: 700;
 }
 
 button {
-    background-color: #2e7d32; /* Green background for the button */
-    color: #fff; /* White text */
-    border: none;
+    min-width: 120px;
+    min-height: 44px;
     padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1rem;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    background-color: #2e7d32;
+    color: #fff;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color .2s ease;
+    width: 100%;
 }
 
 button:hover {
-    background-color: #1b5e20; /* Darker green on hover */
+    background-color: #256628;
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .Vegetable-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    ul {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    li {
+        padding: 20px;
+    }
 }

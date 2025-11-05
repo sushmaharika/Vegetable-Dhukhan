@@ -1,0 +1,152 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #f0fff4 0%, #e8f5e9 100%); /* white to light green */
+    --brand-gradient: linear-gradient(135deg, #2e7d32 0%, #66bb6a 100%); /* green */
+    --danger-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --surface: #ffffff;
+    --text: #333;
+    --muted: #666;
+    --border: #e0e0e0;
+    --shadow-soft: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Page scaffold */
+.page {
+    min-height: 100vh;
+    background: var(--bg-gradient);
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.card {
+    background: var(--surface);
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    border: 2px solid var(--border);
+}
+
+.section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: 0;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    min-width: 120px;
+    min-height: 44px;
+    text-align: center;
+    background-color: #2e7d32;
+    color: #fff;
+}
+
+/* Base HTML button fallback (apply to native buttons too) */
+button {
+    min-width: 120px;
+    min-height: 44px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    background-color: #2e7d32;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+button:hover { background-color: #256628; }
+
+/* Remove hard sizing overrides for consistency across app */
+
+.btn:focus { outline: none; box-shadow: 0 0 0 4px rgba(102,126,234,.15); }
+.btn:hover { transform: translateY(-2px); }
+
+.btn-primary { background: var(--brand-gradient); color: #fff; box-shadow: 0 4px 15px rgba(102,126,234,.3); }
+.btn-primary:hover { box-shadow: 0 6px 20px rgba(102,126,234,.4); }
+
+.btn-danger { background: var(--danger-gradient); color: #fff; box-shadow: 0 4px 15px rgba(245,87,108,.3); }
+.btn-danger:hover { box-shadow: 0 6px 20px rgba(245,87,108,.4); }
+
+.btn-outline { background: #fff; color: #667eea; border: 2px solid #667eea; }
+.btn-outline:hover { background: #667eea; color: #fff; }
+
+/* Normalize existing buttons to theme */
+.signin-button-css,
+.signup-button-css,
+.checkout,
+.logout,
+.delete-button,
+.shop-btn,
+.action-btn,
+.btn-primary,
+.btn-secondary {
+    font-family: inherit;
+}
+
+.signin-button-css,
+.signup-button-css,
+.checkout,
+.shop-btn,
+.action-btn.primary,
+.btn-primary { background: var(--brand-gradient) !important; color: #fff !important; }
+
+.logout,
+.delete-button,
+.btn-danger { background: var(--danger-gradient) !important; color: #fff !important; }
+
+.btn-secondary,
+.action-btn.secondary { background: #fff !important; color: #667eea !important; border: 2px solid #667eea !important; }
+
+/* Headers */
+.header-sticky {
+    position: sticky; top: 0; z-index: 100;
+    background: #fff; border-bottom: 3px solid #667eea; box-shadow: 0 4px 20px rgba(0,0,0,.1);
+}
+
+.brand-text {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* Tables */
+.table { width: 100%; border-collapse: collapse; }
+.table th { text-transform: uppercase; letter-spacing: .5px; font-size: 13px; }
+.table th, .table td { padding: 16px 12px; text-align: center; }
+
+/* Utilities */
+.grid { display: grid; gap: 20px; }
+.grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.grid-responsive { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-10 { gap: 10px; }
+.gap-20 { gap: 20px; }
+
+@media (max-width: 900px) {
+    .grid-3 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+
+@media (max-width: 600px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .btn { padding: 10px 16px; }
+}
+
+

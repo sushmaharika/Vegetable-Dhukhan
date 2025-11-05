@@ -1,24 +1,20 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
-const secret_key=process.env.SECRET_KEY;
-console.log(secret_key);
-
-const VerifyToken=(req,res,next)=>{
-    const token=req.headers["authorization"]
-
-    if(!token){
-        return res.status(400).send({message:"Token is missing"})
+const VerifyToken = (req, res, next) => {
+    const token = req.headers['authorization']?.split(' ')[1]; // Extract token from Authorization header
+    if (!token) {
+        return res.status(401).json({ message: 'Unauthorized: No token provided' });
     }
-    jwt.verify(token,secret_key,(err,decode)=>{
-        if(err){
-            return res.status(400).send({message:"Invalid Token"})
+    jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ message: 'Unauthorized: Invalid token' });
         }
-        req.user=decode;
-        console.log("decoded",decode);
+        req.user = decoded; // Attach decoded token data to `req.user`
         next();
-    })
-}
+    });
+};
 
 export default VerifyToken;
