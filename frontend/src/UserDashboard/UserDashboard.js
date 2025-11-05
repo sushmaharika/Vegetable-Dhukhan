@@ -41,7 +41,7 @@ function UserDashboard() {
                 return;
             }
 
-            const response = await fetch(`https://vegetable-dhukhan-backend.onrender.com/api/user/profile`, {
+            const response = await fetch(`https://vegetable-dhukhan-backend.onrender.com/api/v2/get-user-details`, {
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${token}`,
