@@ -15,7 +15,7 @@ function AdminOrders() {
     const fetchOrders = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:3820/api/admin/orders', {
+            const response = await fetch('https://vegetable-dhukhan-backend.onrender.com/api/admin/orders', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -58,7 +58,7 @@ function AdminOrders() {
     const handleStatusChange = async (orderId, newStatus) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:3820/api/admin/orders/${orderId}/status`, {
+            const response = await fetch(`https://vegetable-dhukhan-backend.onrender.com/api/admin/orders/${orderId}/status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

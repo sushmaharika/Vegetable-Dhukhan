@@ -20,7 +20,7 @@ export default function Vegetables() {
                     return;
                 }
                 
-                const response = await fetch("http://localhost:3820/getVegetables", {
+                const response = await fetch("https://vegetable-dhukhan-backend.onrender.com/getVegetables", {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -63,7 +63,7 @@ export default function Vegetables() {
             const token = localStorage.getItem("token");
             const userId = localStorage.getItem('userId');
             if (userId && token) {
-                await fetch("http://localhost:3820/saveCart", {
+                await fetch("https://vegetable-dhukhan-backend.onrender.com/saveCart", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

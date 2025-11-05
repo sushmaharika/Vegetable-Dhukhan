@@ -69,7 +69,7 @@ export default function CheckOutPage() {
             try {
                 const token = localStorage.getItem("token");
                 if (token && cart.length > 0) {
-                    await fetch("http://localhost:3820/saveCart", {
+                    await fetch("https://vegetable-dhukhan-backend.onrender.com/saveCart", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -96,18 +96,18 @@ export default function CheckOutPage() {
             
             if (userId && token) {
                 // Save transaction to backend
-                const response = await fetch("http://localhost:3820/saveTransaction", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${token}`
-                    },
-                    body: JSON.stringify({ 
-                        transactionId: details.id, 
-                        cartItems: cart,
-                        address: address || 'Not provided'
-                    })
-                });
+                const response = await fetch("https://vegetable-dhukhan-backend.onrender.com/saveTransaction", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${token}`
+                            },
+                            body: JSON.stringify({ 
+                                transactionId: details.id, 
+                                cartItems: cart,
+                                address: address || 'Not provided'
+                            })
+                        });
 
                 if (response.ok) {
                     // Clear cart only after successful transaction

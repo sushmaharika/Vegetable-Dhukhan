@@ -23,7 +23,7 @@ function AdminProducts() {
     const fetchProducts = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:3820/api/admin/products', {
+            const response = await fetch('https://vegetable-dhukhan-backend.onrender.com/api/admin/products', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -44,8 +44,8 @@ function AdminProducts() {
         try {
             const token = localStorage.getItem('token');
             const url = editingProduct 
-                ? `http://localhost:3820/api/admin/products/${editingProduct.id}`
-                : 'http://localhost:3820/api/admin/products';
+                ? `https://vegetable-dhukhan-backend.onrender.com/api/admin/products/${editingProduct.id}`
+                : 'https://vegetable-dhukhan-backend.onrender.com/api/admin/products';
             
             const method = editingProduct ? 'PUT' : 'POST';
             
@@ -89,7 +89,7 @@ function AdminProducts() {
         
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:3820/api/admin/products/${id}`, {
+            const response = await fetch(`https://vegetable-dhukhan-backend.onrender.com/api/admin/products/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`

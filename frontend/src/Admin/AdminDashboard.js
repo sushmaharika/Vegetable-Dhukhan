@@ -30,7 +30,7 @@ function AdminDashboard() {
             const token = localStorage.getItem('token');
             
             // Fetch stats
-            const statsResponse = await fetch('http://localhost:3820/api/admin/dashboard/stats', {
+            const statsResponse = await fetch('https://vegetable-dhukhan-backend.onrender.com/api/admin/dashboard/stats', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (statsResponse.ok) {
@@ -39,7 +39,7 @@ function AdminDashboard() {
             }
 
             // Fetch all customers with detailed info
-            const customersResponse = await fetch('http://localhost:3820/api/admin/customers', {
+            const customersResponse = await fetch('https://vegetable-dhukhan-backend.onrender.com/api/admin/customers', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (customersResponse.ok) {
@@ -48,7 +48,7 @@ function AdminDashboard() {
             }
 
             // Fetch recent orders
-            const ordersResponse = await fetch('http://localhost:3820/api/admin/orders', {
+            const ordersResponse = await fetch('https://vegetable-dhukhan-backend.onrender.com/api/admin/orders', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (ordersResponse.ok) {
@@ -65,7 +65,7 @@ function AdminDashboard() {
     const viewUserDetails = async (userId) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:3820/api/admin/customers/${userId}`, {
+            const response = await fetch(`https://vegetable-dhukhan-backend.onrender.com/api/admin/customers/${userId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (response.ok) {

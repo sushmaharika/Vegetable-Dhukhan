@@ -30,7 +30,7 @@ export default function Welcome() {
           return;
         }
 
-        const response = await fetch('http://localhost:3820/api/v2/get-user-details', {
+        const response = await fetch("https://vegetable-dhukhan-backend.onrender.com/api/v2/get-user-details", {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,

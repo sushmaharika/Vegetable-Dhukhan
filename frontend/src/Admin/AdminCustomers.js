@@ -14,7 +14,7 @@ function AdminCustomers() {
     const fetchCustomers = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:3820/api/admin/customers', {
+            const response = await fetch('https://vegetable-dhukhan-backend.onrender.com/api/admin/customers', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

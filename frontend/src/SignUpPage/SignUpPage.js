@@ -37,7 +37,7 @@ function SignUpPage(){
         }
         console.log(signupdata);
         try{
-            const response=await fetch("http://localhost:3820/signupDetails",{
+            const response=await fetch("https://vegetable-dhukhan-backend.onrender.com/signupDetails",{
                 method:'POST',
                 headers:{
                     "Content-Type":"application/json",

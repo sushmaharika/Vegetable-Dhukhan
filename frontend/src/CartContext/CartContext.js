@@ -20,7 +20,7 @@ export const CartProvider = ({ children }) => {
             
             if (token && userId) {
                 try {
-                    const response = await fetch("http://localhost:3820/getCart", {
+                    const response = await fetch("https://vegetable-dhukhan-backend.onrender.com/getCart", {
                         method: "GET",
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -51,7 +51,7 @@ export const CartProvider = ({ children }) => {
             if (token && cart.length >= 0) {
                 const syncCart = async () => {
                     try {
-                        await fetch("http://localhost:3820/saveCart", {
+                        await fetch("https://vegetable-dhukhan-backend.onrender.com/saveCart", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
